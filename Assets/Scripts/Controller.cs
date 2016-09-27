@@ -8,7 +8,15 @@ public class Controller : MonoBehaviour
     public bool facingRight = true;
     [HideInInspector]
     public float moveForce = 1f;
+<<<<<<< HEAD
     public float maxSpeed = 0.5f;
+=======
+    public float maxSpeed = 1f;
+    public float jumpForce = 25f;
+    public Transform groundCheck;
+    float lockPos = 0;
+
+>>>>>>> b31f32a4a914af84f7d368955c8fa49ef7f1a360
     private bool grounded = false;
     private Animator anim;
     private Rigidbody2D rb2d;
@@ -47,7 +55,17 @@ public class Controller : MonoBehaviour
         else if (h < 0 && facingRight)
             Flip();
 
+<<<<<<< HEAD
 
+=======
+        if (jump)
+        {
+            anim.SetTrigger("Jump");
+            rb2d.AddForce(new Vector2(0f, jumpForce));
+            jump = false;
+        }
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
+>>>>>>> b31f32a4a914af84f7d368955c8fa49ef7f1a360
     }
 
 
@@ -58,4 +76,5 @@ public class Controller : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
 }
