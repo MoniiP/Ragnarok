@@ -7,17 +7,12 @@ public class Controller : MonoBehaviour
     [HideInInspector]
     public bool facingRight = true;
     [HideInInspector]
-    public bool jump = false;
     public float moveForce = 1f;
-    public float maxSpeed = 1f;
-    public float jumpForce = 25f;
-    public Transform groundCheck;
-
-
+    public float maxSpeed = 0.5f;
     private bool grounded = false;
     private Animator anim;
     private Rigidbody2D rb2d;
-
+    public float jumpSpeed = 0.5f;
 
     // Use this for initialization
     void Awake()
@@ -29,11 +24,9 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            jump = true;
+            transform.Translate(Vector2.up * jumpSpeed * Time.deltaTime, Space.World);
         }
     }
 
@@ -54,12 +47,7 @@ public class Controller : MonoBehaviour
         else if (h < 0 && facingRight)
             Flip();
 
-        if (jump)
-        {
-            anim.SetTrigger("Jump");
-            rb2d.AddForce(new Vector2(0f, jumpForce));
-            jump = false;
-        }
+
     }
 
 
