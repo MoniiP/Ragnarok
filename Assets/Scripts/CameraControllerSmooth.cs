@@ -33,7 +33,7 @@ public class CameraControllerSmooth : MonoBehaviour {
             playerPosition = transform.position + (playerDirection.normalized * vecVelocite * Time.deltaTime);
 
             transform.position = Vector3.Lerp(transform.position, playerPosition + offset, 0.25f);
-
+            
 
         }
     }

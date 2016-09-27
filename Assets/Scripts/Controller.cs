@@ -12,7 +12,7 @@ public class Controller : MonoBehaviour
     public float maxSpeed = 1f;
     public float jumpForce = 25f;
     public Transform groundCheck;
-
+    float lockPos = 0;
 
     private bool grounded = false;
     private Animator anim;
@@ -60,6 +60,7 @@ public class Controller : MonoBehaviour
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
         }
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
     }
 
 
@@ -70,4 +71,5 @@ public class Controller : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
 }
